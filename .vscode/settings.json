@@ -4,7 +4,14 @@
         "LPARAM",
         "lpfn",
         "LRESULT",
+        "VKAPI",
         "WNDCLASS",
         "WPARAM"
-    ]
+    ],
+    "files.associations": {
+        "*.bzl": "starlark",
+        "*.mm": "cpp",
+        "*.m": "cpp",
+        "stdexcept": "cpp"
+    }
 }
