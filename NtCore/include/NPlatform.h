@@ -20,4 +20,7 @@
 #define BDllExport __attribute__((visibility("default")))
 #endif
 
+using NCanvasID = HWND;
+static const wchar_t* N_CLASS_NAME{L"NWindows"};
+
 #endif
