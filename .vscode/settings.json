@@ -1,12 +1,17 @@
 {
     "cSpell.words": [
+        "DEFAULTTONEAREST",
+        "DEVMODE",
         "Framebuffer",
+        "GWLP",
         "HWND",
         "LPARAM",
         "lpfn",
         "lpsz",
         "LRESULT",
+        "MONITORINFOEX",
         "OVERLAPPEDWINDOW",
+        "Pels",
         "Sfloat",
         "subpass",
         "Subpasses",
