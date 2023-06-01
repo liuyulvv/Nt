@@ -7,7 +7,7 @@
 #include "NApplication.h"
 
 int main() {
-    auto app = new NApplication();
-    app->Exec();
+    NApplication app;
+    app.Exec();
     return 0;
 }

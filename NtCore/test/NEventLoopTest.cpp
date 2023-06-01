@@ -9,7 +9,7 @@
 #include "NEventLoop.h"
 
 int main() {
-    auto event = new NEventLoop();
-    event->Exec();
+    NEventLoop event;
+    event.Exec();
     return 0;
 }
