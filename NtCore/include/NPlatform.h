@@ -14,10 +14,10 @@
 
 #include <Windows.h>
 
+#if !defined(BDllExport)
 #define BDllExport __declspec(dllexport)
-
 #else
-
 #define BDllExport __attribute__((visibility("default")))
+#endif
 
 #endif
