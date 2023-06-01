@@ -1,7 +1,4 @@
 build/
 lib/
 install/
-*.exe
-*.ilk
-*.pdb
-*.dll
+bin/
