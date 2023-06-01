@@ -4,6 +4,7 @@
         "LPARAM",
         "lpfn",
         "LRESULT",
+        "swapchain",
         "VKAPI",
         "WNDCLASS",
         "WPARAM"
