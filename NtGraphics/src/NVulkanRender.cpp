@@ -10,11 +10,11 @@
 #include "NVulkanSwapchain.h"
 
 NVulkanRender::NVulkanRender(HWND hwnd, uint32_t width, uint32_t height) {
-    RecreateSwapchain(hwnd, width, height);
+    CreateSwapchain(hwnd, width, height);
     CreateCommandBuffers();
 }
 
-void NVulkanRender::RecreateSwapchain(HWND hwnd, uint32_t width, uint32_t height) {
+void NVulkanRender::CreateSwapchain(HWND hwnd, uint32_t width, uint32_t height) {
     NVulkanDevice::Singleton().WaitIdle();
     swapchain_.reset(nullptr);
     swapchain_ = std::make_unique<NVulkanSwapchain>(hwnd, width, height);
