@@ -13,4 +13,8 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/lib/${CMAKE_BUILD_TYPE}
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/lib/${CMAKE_BUILD_TYPE})
 set(CMAKE_INSTALL_PREFIX ${PROJECT_SOURCE_DIR}/install/${CMAKE_BUILD_TYPE})
 
+option(BUILD_NT_TEST "Build test codes" ON)
+option(BUILD_NT_STATIC "Build Nt as static library" OFF)
+
 add_subdirectory(NtCore)
+add_subdirectory(NtGraphics)
