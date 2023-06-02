@@ -10,6 +10,7 @@
         "lpsz",
         "LRESULT",
         "MONITORINFOEX",
+        "Multisample",
         "OVERLAPPEDWINDOW",
         "Pels",
         "Sfloat",
@@ -17,6 +18,7 @@
         "Subpasses",
         "subresource",
         "swapchain",
+        "Viewports",
         "VKAPI",
         "WNDCLASS",
         "WPARAM"
