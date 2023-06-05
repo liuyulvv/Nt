@@ -18,6 +18,7 @@
         "Subpasses",
         "subresource",
         "swapchain",
+        "Swapchains",
         "Viewports",
         "VKAPI",
         "WNDCLASS",
