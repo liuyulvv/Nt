@@ -19,6 +19,8 @@ endif()
 file(GLOB_RECURSE SRCS RELATIVE "${CMAKE_CURRENT_SOURCE_DIR}" "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp")
 file(GLOB_RECURSE HEADERS RELATIVE "${CMAKE_CURRENT_SOURCE_DIR}" "${CMAKE_CURRENT_SOURCE_DIR}/include/*.h")
 
+add_subdirectory(glm)
+
 set(Vulkan_SDK "D:/VulkanSDK/1.3.236.0")
 find_package(Vulkan REQUIRED COMPONENTS glslc)
 find_program(glslc_executable NAMES glslc HINTS Vulkan::glslc)
@@ -41,6 +43,7 @@ add_custom_target(shaders ALL DEPENDS ${spv_shaders})
 include_directories(
     "include"
     ${Vulkan_INCLUDE_DIRS}
+    "glm"
 )
 
 add_library(

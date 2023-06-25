@@ -39,6 +39,13 @@ NVulkanInstance::NVulkanInstance() {
     }
 }
 
+NVulkanInstance::~NVulkanInstance() {
+    if (enable_validation_layers_) {
+        instance_.destroyDebugUtilsMessengerEXT(debug_utils_messenger_);
+    }
+    instance_.destroy();
+}
+
 std::vector<vk::PhysicalDevice> NVulkanInstance::EnumeratePhysicalDevices() {
     return instance_.enumeratePhysicalDevices();
 }

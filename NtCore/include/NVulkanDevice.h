@@ -6,11 +6,12 @@
  * @date 2023-06-01
  */
 
+#include <cstdint>
 #include <vector>
 
 #include "NVulkanHeader.h"
 
-class BDllExport NVulkanDevice {
+class NDllExport NVulkanDevice {
 public:
     static NVulkanDevice& Singleton() {
         static NVulkanDevice device;
@@ -40,6 +41,22 @@ public:
     void WaitIdle() const;
     const vk::CommandPool& CommandPool() const;
     std::vector<vk::CommandBuffer> AllocateCommandBuffers(const vk::CommandBufferAllocateInfo& info);
+    vk::ShaderModule CreateShaderModule(const vk::ShaderModuleCreateInfo& info);
+    vk::Pipeline CreateGraphicsPipeline(const vk::GraphicsPipelineCreateInfo& info);
+    void DestroyShaderModule(const vk::ShaderModule& shader_module);
+    void DestroyPipeline(const vk::Pipeline& pipeline);
+    void DestroyBuffer(const vk::Buffer& buffer);
+    void FreeMemory(const vk::DeviceMemory& memory);
+    void CreateBuffer(vk::DeviceSize size, vk::BufferUsageFlags usage, vk::MemoryPropertyFlags properties, vk::Buffer& buffer, vk::DeviceMemory& memory);
+    void CopyBuffer(const vk::Buffer& src, vk::Buffer& dst, vk::DeviceSize size);
+    void* MapMemory(const vk::DeviceMemory& memory, uint64_t offset, uint64_t size);
+    void UnMapMemory(const vk::DeviceMemory& memory);
+    vk::PipelineLayout CreatePipelineLayout(const vk::PipelineLayoutCreateInfo& info);
+    void WaitForFences(const vk::Fence& fence, bool wait_all = true);
+    void ResetFences(const vk::Fence& fence);
+    uint32_t AcquireNextImage(const vk::SwapchainKHR& swapchain, const vk::Semaphore& semaphore, const vk::Fence& fence = nullptr);
+    const vk::Queue& GraphicsQueue() const;
+    const vk::Queue& PresentQueue() const;
 
 private:
     void CreateDevice();
@@ -47,6 +64,8 @@ private:
 
 private:
     uint32_t FindMemoryType(uint32_t typeFilter, vk::MemoryPropertyFlags properties);
+    vk::CommandBuffer BeginSingleTimeCommands();
+    void EndSingleTimeCommands(const vk::CommandBuffer& command_buffer);
 
 private:
     vk::Device device_{};

@@ -10,7 +10,7 @@
 
 #include "NVulkanHeader.h"
 
-class BDllExport NVulkanSwapchain {
+class NDllExport NVulkanSwapchain {
 public:
     NVulkanSwapchain(HWND hwnd, uint32_t width, uint32_t height);
     NVulkanSwapchain() = delete;
@@ -22,6 +22,12 @@ public:
 
 public:
     size_t GetImageCount() const;
+    const vk::RenderPass& RenderPass() const;
+    uint32_t AcquireNextImage();
+    void SubmitCommandBuffers(const vk::CommandBuffer& buffer, uint32_t image_index);
+    const vk::Framebuffer& FrameBuffer(uint32_t index) const;
+    const vk::Extent2D SwapchainExtent() const;
+    void WindowExtentChanged(uint32_t width, uint32_t height);
 
 public:
     static constexpr int MAX_FRAMES_IN_FLIGHT{2};

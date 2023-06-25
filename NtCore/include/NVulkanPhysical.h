@@ -10,7 +10,7 @@
 
 #include "NVulkanHeader.h"
 
-class BDllExport NVulkanPhysical {
+class NDllExport NVulkanPhysical {
 public:
     struct QueueFamilyIndices {
         uint32_t graphics_family_;

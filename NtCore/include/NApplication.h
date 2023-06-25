@@ -7,10 +7,11 @@
  */
 
 #include "NPlatform.h"
+#include "NVulkan.h"
 
 class NEventLoop;
 
-class BDllExport NApplication {
+class NDllExport NApplication {
 public:
     NApplication();
     ~NApplication() = default;

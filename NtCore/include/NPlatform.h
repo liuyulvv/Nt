@@ -14,13 +14,13 @@
 
 #include <Windows.h>
 
-#if !defined(BDllExport)
-#define BDllExport __declspec(dllexport)
+#if !defined(NDllExport)
+#define NDllExport __declspec(dllexport)
 #else
-#define BDllExport __attribute__((visibility("default")))
+#define NDllExport __attribute__((visibility("default")))
 #endif
 
 using NCanvasID = HWND;
-static const wchar_t* N_CLASS_NAME{L"NWindows"};
+static const wchar_t* N_PLATFORM_NAME{L"NWindows"};
 
 #endif

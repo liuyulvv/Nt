@@ -8,7 +8,7 @@
 
 #include "NPlatform.h"
 
-class BDllExport NEventLoop {
+class NDllExport NEventLoop {
 public:
     NEventLoop();
     ~NEventLoop() = default;

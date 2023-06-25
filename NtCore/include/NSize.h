@@ -8,7 +8,9 @@
 
 #include <cstdint>
 
-struct NSize {
+#include "NPlatform.h"
+
+struct NDllExport NSize {
     uint32_t width_{0};
     uint32_t height_{0};
 };

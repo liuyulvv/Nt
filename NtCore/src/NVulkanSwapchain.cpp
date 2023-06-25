@@ -26,6 +26,62 @@ size_t NVulkanSwapchain::GetImageCount() const {
     return swapchain_images_.size();
 }
 
+const vk::RenderPass& NVulkanSwapchain::RenderPass() const {
+    return render_pass_;
+}
+
+uint32_t NVulkanSwapchain::AcquireNextImage() {
+    NVulkanDevice::Singleton().WaitForFences(in_flight_fences_[current_frame_]);
+    return NVulkanDevice::Singleton().AcquireNextImage(swapchain_, image_available_semaphores_[current_frame_], nullptr);
+}
+
+void NVulkanSwapchain::SubmitCommandBuffers(const vk::CommandBuffer& buffer, uint32_t image_index) {
+    if (images_in_flight_[image_index]) {
+        NVulkanDevice::Singleton().WaitForFences(images_in_flight_[image_index]);
+    }
+    images_in_flight_[image_index] = in_flight_fences_[current_frame_];
+
+    vk::SubmitInfo submit_info;
+    vk::PipelineStageFlags wait_dst_stage_mask = vk::PipelineStageFlagBits::eColorAttachmentOutput;
+    submit_info
+        .setWaitSemaphoreCount(1)
+        .setWaitSemaphores(image_available_semaphores_[current_frame_])
+        .setWaitDstStageMask(wait_dst_stage_mask)
+        .setCommandBufferCount(1)
+        .setCommandBuffers(buffer)
+        .setSignalSemaphoreCount(1)
+        .setSignalSemaphores(render_finished_semaphores_[current_frame_]);
+
+    NVulkanDevice::Singleton().ResetFences(in_flight_fences_[current_frame_]);
+
+    NVulkanDevice::Singleton().GraphicsQueue().submit(submit_info, in_flight_fences_[current_frame_]);
+
+    vk::PresentInfoKHR present_info;
+    present_info
+        .setWaitSemaphoreCount(1)
+        .setWaitSemaphores(render_finished_semaphores_[current_frame_])
+        .setSwapchainCount(1)
+        .setSwapchains(swapchain_)
+        .setImageIndices(image_index);
+
+    [[maybe_unused]] auto res = NVulkanDevice::Singleton().PresentQueue().presentKHR(present_info);
+    current_frame_ = (current_frame_ + 1) % MAX_FRAMES_IN_FLIGHT;
+}
+
+const vk::Framebuffer& NVulkanSwapchain::FrameBuffer(uint32_t index) const {
+    return swapchain_framebuffers_[index];
+}
+
+const vk::Extent2D NVulkanSwapchain::SwapchainExtent() const {
+    return swapchain_extent_;
+}
+
+void NVulkanSwapchain::WindowExtentChanged(uint32_t width, uint32_t height) {
+    window_extent_.setWidth(width);
+    window_extent_.setHeight(height);
+    CreateSwapchain();
+}
+
 void NVulkanSwapchain::CreateSwapchain() {
     auto swapchain_support = NVulkanPhysical::Singleton().QuerySwapchainSupport(surface_);
     auto surface_format = ChooseSwapSurfaceFormat(swapchain_support.formats_);

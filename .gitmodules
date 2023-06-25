@@ -1,3 +1,3 @@
-[submodule "NtGraphics/glm"]
-	path = NtGraphics/glm
+[submodule "NtCore/glm"]
+	path = NtCore/glm
 	url = https://github.com/g-truc/glm.git

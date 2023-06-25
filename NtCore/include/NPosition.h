@@ -8,7 +8,9 @@
 
 #include <cstdint>
 
-struct NPosition {
+#include "NPlatform.h"
+
+struct NDllExport NPosition {
     int32_t x_{0};
     int32_t y_{0};
 };

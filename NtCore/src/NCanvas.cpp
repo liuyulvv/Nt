@@ -8,11 +8,13 @@
 
 #include <stdexcept>
 
+#include "NVulkan.h"
+
 NCanvas::NCanvas() {
 #if defined(_WIN32)
     id_ = CreateWindowEx(
         0,
-        N_CLASS_NAME,
+        N_PLATFORM_NAME,
         title_.c_str(),
         WS_OVERLAPPEDWINDOW,
         position_.x_,
@@ -30,6 +32,7 @@ NCanvas::NCanvas() {
 #endif
     auto size = GetMonitorSize();
     Move({static_cast<int32_t>(size.width_ / 4), static_cast<int32_t>(size.height_ / 4)}, {size.width_ / 2, size.height_ / 2});
+    render_ = std::make_unique<NVulkanRender>(id_, size_.width_, size_.height_);
 }
 
 NSize NCanvas::GetMonitorSize() const {

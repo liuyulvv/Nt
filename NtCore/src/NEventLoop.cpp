@@ -14,7 +14,7 @@ NEventLoop::NEventLoop() {
     WNDCLASS window_class{};
     window_class.lpfnWndProc = EventProcess;
     window_class.hInstance = instance;
-    window_class.lpszClassName = N_CLASS_NAME;
+    window_class.lpszClassName = N_PLATFORM_NAME;
     RegisterClass(&window_class);
 #endif
 }

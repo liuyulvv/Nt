@@ -11,8 +11,11 @@
 #include "NPlatform.h"
 #include "NPosition.h"
 #include "NSize.h"
+#include <memory>
 
-class BDllExport NCanvas {
+class NVulkanRender;
+
+class NDllExport NCanvas {
 public:
     NCanvas();
     ~NCanvas() = default;
@@ -44,4 +47,5 @@ private:
     std::wstring title_{};
     NPosition position_{};
     NSize size_{};
+    std::unique_ptr<NVulkanRender> render_{};
 };

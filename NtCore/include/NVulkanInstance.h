@@ -10,7 +10,7 @@
 
 #include "NVulkanHeader.h"
 
-class BDllExport NVulkanInstance {
+class NDllExport NVulkanInstance {
 public:
     static NVulkanInstance& Singleton() {
         static NVulkanInstance instance;
@@ -21,7 +21,7 @@ private:
     NVulkanInstance();
 
 public:
-    ~NVulkanInstance() = default;
+    ~NVulkanInstance();
     NVulkanInstance(const NVulkanInstance& instance) = default;
     NVulkanInstance(NVulkanInstance&& instance) = delete;
     NVulkanInstance& operator=(const NVulkanInstance& instance) = default;

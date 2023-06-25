@@ -91,6 +91,17 @@
         "xtr1common": "cpp",
         "xutility": "cpp",
         "*.rh": "cpp",
-        "optional": "cpp"
+        "optional": "cpp",
+        "chrono": "cpp",
+        "cstdarg": "cpp",
+        "forward_list": "cpp",
+        "fstream": "cpp",
+        "functional": "cpp",
+        "iomanip": "cpp",
+        "map": "cpp",
+        "random": "cpp",
+        "set": "cpp",
+        "unordered_map": "cpp",
+        "xtree": "cpp"
     }
 }

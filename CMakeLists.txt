@@ -17,4 +17,3 @@ option(BUILD_NT_TEST "Build test codes" ON)
 option(BUILD_NT_STATIC "Build Nt as static library" OFF)
 
 add_subdirectory(NtCore)
-add_subdirectory(NtGraphics)
